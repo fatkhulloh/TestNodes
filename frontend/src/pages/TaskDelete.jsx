@@ -6,9 +6,14 @@ const API = 'http://localhost:3001/api/tasks'
 export default function TaskDelete() {
   const { id } = useParams()
   const nav = useNavigate()
-
+  
   const hapus = () => {
-    axios.delete(`${API}/${id}`).then(() => nav('/'))
+    const key = "1234567"
+    axios.delete(`${API}/${id}`, {
+      headers: {
+        "x-api-key": key
+      }
+    }).then(() => nav('/'))
   }
 
   return (

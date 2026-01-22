@@ -3,15 +3,23 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 
 const API = "http://localhost:3001/api/tasks"
+const key = "1234567"
 
 export default function TaskList() {
   const [tasks, setTasks] = useState([])
   const navigate = useNavigate()
-
-  const loadData = async () => {
-    const res = await axios.get(API)
+ const loadData = async () => {
+    const res = await axios.get(API, {
+      headers: {
+        "x-api-key": key
+      }
+    })
     setTasks(res.data)
   }
+  // const loadData = async () => {
+  //   const res = await axios.get(API)
+  //   setTasks(res.data)
+  // }
 
   useEffect(() => {
     loadData()

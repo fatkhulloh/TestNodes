@@ -7,7 +7,7 @@ const API = "http://localhost:3001/api/tasks"
 function TaskEdit() {
   const { id } = useParams()
   const navigate = useNavigate()
-
+  
   const [loading, setLoading] = useState(true)
   const [form, setForm] = useState({
     title: "",
@@ -15,12 +15,17 @@ function TaskEdit() {
     status: "pending",
     due_date: "",
   })
-
+  
   // 🔹 AMBIL DATA DARI DATABASE
   useEffect(() => {
-    axios.get(`${API}/${id}`)
-      .then(res => {
-        const data = res.data
+    const key = "1234567"
+    axios.get(`${API}/${id}`, {
+      headers: {
+        "x-api-key": key
+      }
+    })
+    .then(res => {
+      const data = res.data
 
         setForm({
           title: data.title,

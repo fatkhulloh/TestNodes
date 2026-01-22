@@ -5,9 +5,9 @@ const API = 'http://localhost:3001/api/tasks'
 
 export default function TaskCreate() {
   const nav = useNavigate()
-
   const submit = e => {
     e.preventDefault()
+    const key = "1234567"
     const f = e.target
 
     axios.post(API, {
@@ -15,6 +15,10 @@ export default function TaskCreate() {
       description: f.description.value,
       status: f.status.value,
       due_date: f.due_date.value
+    },  {
+      headers: {
+        "x-api-key": key
+      }
     }).then(() => nav('/'))
   }
 
