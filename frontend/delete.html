@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Hapus Task</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<style>
+body { font-family: Arial; padding: 20px; }
+button { padding: 10px; border: none; margin-right: 10px; }
+.yes { background: #e74c3c; color: white; }
+.no { background: #999; color: white; }
+</style>
+</head>
+<body>
+
+<h3>Yakin ingin menghapus task ini?</h3>
+
+<button class="yes" id="hapus">Ya, Hapus</button>
+<button class="no" onclick="location.href='index.html'">Batal</button>
+
+<script>
+const API = 'http://localhost:3001/api/tasks';
+const id = new URLSearchParams(window.location.search).get('id');
+
+document.getElementById('hapus').onclick = function() {
+  axios.delete(`${API}/${id}`)
+  .then(() => location.href = 'index.html');
+};
+</script>
+
+</body>
+</html>
